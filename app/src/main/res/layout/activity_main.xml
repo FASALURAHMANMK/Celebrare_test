@@ -1,6 +1,7 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -14,7 +15,9 @@
         android:layout_height="wrap_content"
         android:background="#f2f2f2"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/canvasLayout"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/btnUndo"
@@ -35,6 +38,7 @@
             app:tint="#0622C8" />
 
         <LinearLayout
+            android:id="@+id/Save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
@@ -56,53 +60,88 @@
     <FrameLayout
         android:id="@+id/canvasLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:background="#f8f8f8" />
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#f8f8f8"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/TextControls"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <!-- Text Controls -->
     <LinearLayout
-        android:id="@+id/fontControls"
+        android:id="@+id/TextControls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:background="#f2f2f2"
         android:orientation="horizontal"
-        android:padding="10dp">
-
-        <Spinner
-            android:id="@+id/fontSelector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/font_styles"
-            android:minHeight="48dp" />
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/canvasLayout"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-151dp">
 
         <Button
             android:id="@+id/btnAddText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Text" />
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:backgroundTint="#FFFFFF"
+            android:foreground="@drawable/text_add_t_icon"
+            android:foregroundGravity="center"
+            app:rippleColor="@android:color/transparent" />
 
-        <ToggleButton
-            android:id="@+id/btnBold"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/Text_Actions"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textOff="B"
-            android:textOn="B" />
+            android:dividerPadding="5dp"
+            android:gravity="right"
+            android:orientation="horizontal">
 
-        <ToggleButton
-            android:id="@+id/btnItalic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOff="I"
-            android:textOn="I" />
+            <Spinner
+                android:id="@+id/fontSelector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/font_styles"
+                android:minHeight="48dp" />
 
-        <ToggleButton
-            android:id="@+id/btnUnderline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOff="U"
-            android:textOn="U" />
+            <ToggleButton
+                android:id="@+id/btnBold"
+                android:layout_width="38dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:foreground="@drawable/text_bold_icon"
+                android:foregroundGravity="fill"
+                android:textOff=" "
+                android:textOn=" " />
+
+            <ToggleButton
+                android:id="@+id/btnItalic"
+                android:layout_width="38dp"
+                android:layout_height="28dp"
+                android:background="@android:color/transparent"
+                android:foreground="@drawable/text_italic_icon"
+                android:foregroundGravity="fill"
+                android:textOff=" "
+                android:textOn=" " />
+
+            <ToggleButton
+                android:id="@+id/btnUnderline"
+                android:layout_width="34dp"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:foreground="@drawable/text_underline_icon"
+                android:foregroundGravity="fill"
+                android:textOff=" "
+                android:textOn=" " />
+
+        </LinearLayout>
+
     </LinearLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
